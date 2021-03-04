@@ -1,5 +1,6 @@
 package taufiq.apps.roomdemo
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +12,9 @@ import taufiq.apps.roomdemo.db.SubscriberTable
  *
  */
 class SubscriberAdapter(
-    val data: List<SubscriberTable>,
-    val listener: (SubscriberTable) -> Unit
+    private val context: Context,
+    private val data: List<SubscriberTable>,
+    private val listener: (SubscriberTable) -> Unit
 ) : RecyclerView.Adapter<SubscriberAdapter.SubscriberViewHolder>() {
 
 

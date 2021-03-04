@@ -1,6 +1,9 @@
 package taufiq.apps.roomdemo.vm
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import taufiq.apps.roomdemo.db.SubscriberTable
@@ -12,8 +15,11 @@ import taufiq.apps.roomdemo.repos.SubscriberRepository
  */
 class SubscriberViewModel(private val repository: SubscriberRepository) : ViewModel() {
 
-    val subscribers = liveData {
-        emitSource(repository.subscribers)
+    val subs = MutableLiveData<List<SubscriberTable>>()
+    val _subs: LiveData<List<SubscriberTable>> = subs
+
+    init {
+        subs.value = repository.subscribers.value
     }
 
     private val _name = MutableLiveData<String>()
@@ -21,13 +27,6 @@ class SubscriberViewModel(private val repository: SubscriberRepository) : ViewMo
 
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> = _email
-
-    fun insertSubUi(nameUi: String, emailUi: String) {
-        _name.value = nameUi
-        _email.value = emailUi
-        insertSubscriber(SubscriberTable(0,_name.value.toString(),_email.value.toString()))
-
-    }
 
     fun insertSubscriber(subscriber: SubscriberTable) {
         viewModelScope.launch(IO) {
