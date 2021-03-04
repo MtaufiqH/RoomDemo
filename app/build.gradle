@@ -63,5 +63,6 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     // view binding
     implementation "com.github.yogacp:android-viewbinding:$binding_version"
+    implementation "androidx.fragment:fragment-ktx:1.3.0"
 
 }

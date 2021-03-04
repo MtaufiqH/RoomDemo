@@ -5,9 +5,11 @@
     android:padding="16dp"
     android:layout_margin="8dp"
     android:background="@drawable/bg_background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/containers">
 
     <TextView
+        android:id="@+id/sub_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/your_name"
@@ -15,6 +17,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/sub_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/your_email"
