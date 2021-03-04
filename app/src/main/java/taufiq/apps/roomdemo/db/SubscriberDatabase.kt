@@ -10,5 +10,5 @@ import androidx.room.RoomDatabase
 @Database(entities = [SubscriberTable::class], version = 1)
 abstract class SubscriberDatabase : RoomDatabase() {
 
-    abstract val subsDao: SubscribersDao
+    abstract fun subsDao(): SubscribersDao
 }
